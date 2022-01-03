@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.MessageFragment">
+
+    <EditText
+        android:id="@+id/edit_input_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Введите сообщение "
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_send_message"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_send_message"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_send"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+
+
+    <ImageView
+        android:id="@+id/image_photo_message"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_voice_message"
+        app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+
+    <ImageView
+        android:id="@+id/image_voice_message"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_voice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
