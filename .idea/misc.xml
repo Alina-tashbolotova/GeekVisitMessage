@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/GeekVisitMessage/app/src/main/res/drawable/ic_emoji.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/GeekVisitMessage/app/src/main/res/layout/activity_main.xml" value="0.26875" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/GeekVisitMessage/app/src/main/res/layout/emoji_text_view.xml" value="0.26875" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/GeekVisitMessage/app/src/main/res/layout/fragment_message.xml" value="0.26875" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/GeekVisitMessage/app/src/main/res/layout/fragment_user.xml" value="0.26875" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/GeekVisitMessage/app/src/main/res/layout/item_message.xml" value="0.26875" />
       </map>
     </option>
   </component>

@@ -1,6 +1,5 @@
 package com.example.geekvisitmessage.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -8,7 +7,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.geekvisitmessage.R
 import com.example.geekvisitmessage.databinding.ActivityMainBinding
-import com.theartofdev.edmodo.cropper.CropImage
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,13 +33,4 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration)
     }
 
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && resultCode == RESULT_OK
-            && data != null){
-            val uri  = CropImage.getActivityResult(data).uri
-        }
-    }
 }

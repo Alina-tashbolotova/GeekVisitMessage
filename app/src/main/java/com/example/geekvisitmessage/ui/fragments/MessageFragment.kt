@@ -1,24 +1,32 @@
 package com.example.geekvisitmessage.ui.fragments
 
 import android.annotation.SuppressLint
-import android.app.Activity.RESULT_OK
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.example.geekvisitmessage.R
 import com.example.geekvisitmessage.databinding.FragmentMessageBinding
-import com.example.geekvisitmessage.ui.activity.MainActivity
-import com.theartofdev.edmodo.cropper.CropImage
+import com.example.geekvisitmessage.ui.MessageModel
+import com.example.geekvisitmessage.ui.adapter.MessageAdapter
 
-class MessageFragment : Fragment() {
+class MessageFragment() : Fragment() {
 
     private var _binding: FragmentMessageBinding? = null
     private val binding get() = _binding!!
+
+    private val messageAdapter = MessageAdapter(
+        this::setOnItemClickListener
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,15 +35,27 @@ class MessageFragment : Fragment() {
     ): View {
         _binding = FragmentMessageBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
         sendMessage()
         initFields()
         sendVoice()
+    }
 
+    private fun init() {
+        binding.recyclerMessage.adapter
+        binding.recyclerMessage.layoutManager = LinearLayoutManager(context)
+    }
+
+
+    private fun sendMessage() = with(binding) {
+        imageSendMessage.setOnClickListener {
+            val name = editInputMessage.text.toString()
+            editInputMessage.text.clear()
+        }
     }
 
     private fun initFields() = with(binding) {
@@ -45,54 +65,48 @@ class MessageFragment : Fragment() {
                 imageSendMessage.visibility = View.GONE
                 imagePhotoMessage.visibility = View.VISIBLE
                 imageVoiceMessage.visibility = View.VISIBLE
+                emojiImage.visibility = View.VISIBLE
             } else {
                 imageSendMessage.visibility = View.VISIBLE
                 imagePhotoMessage.visibility = View.GONE
                 imageVoiceMessage.visibility = View.GONE
+                emojiImage.visibility = View.GONE
             }
         }
         imagePhotoMessage.setOnClickListener {
-            sendPhoto()
-
+            mGetContent.launch("image/*")
+//            sendPhoto()
         }
+
+    }
+
+    val mGetContent = registerForActivityResult<String, Uri>(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        val image = uri.toString()
+        Glide.with(binding.imagePhotoMessage).load(image).centerCrop()
+            .into(binding.imagePhotoMessage)
     }
 
     private fun sendPhoto() {
-        CropImage.activity()
-            .setAspectRatio(1, 1)
-            .setRequestedSize(250, 250)
-            .start(activity as MainActivity, this)
 
+//        CropImage.activity()
+//            .setAspectRatio(1, 1)
+//            .setRequestedSize(250, 250)
+//            .start(activity as MainActivity, this)
+//
+//    }
+//
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+//            && resultCode == RESULT_OK
+//            && data != null
+//        ) {
+//            val uri = CropImage.getActivityResult(data).uri
+//        }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && resultCode == RESULT_OK
-            && data != null
-        ) {
-            val uri = CropImage.getActivityResult(data).uri
-            findNavController().navigate(
-                MessageFragmentDirections.actionMessageFragmentToUserFragment(
-                    uri.toString()
-                )
-            )
-
-        }
-    }
-
-    private fun sendMessage() = with(binding) {
-        imageSendMessage.setOnClickListener {
-            val name = editInputMessage.text
-            val hello = "$name"
-            findNavController().navigate(
-                MessageFragmentDirections.actionMessageFragmentToUserFragment(
-                    hello
-                )
-            )
-
-        }
-    }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun sendVoice() = with(binding) {
@@ -100,14 +114,23 @@ class MessageFragment : Fragment() {
             if (event.action == MotionEvent.ACTION_DOWN) {
                 // TODO record
                 editInputMessage.setText("Запись")
+                imageVoiceMessage.setColorFilter(
+                    ContextCompat.getColor(
+                        context!!,
+                        R.color.design_default_color_primary_dark
+                    )
+                )
             } else if (event.action == MotionEvent.ACTION_UP) {
                 // TODO stop record
                 editInputMessage.setText("")
-
+                imageVoiceMessage.colorFilter = null
             }
-
             true
         }
+    }
+
+    private fun setOnItemClickListener(title:String,image:String) {
+
 
     }
 

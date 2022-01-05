@@ -10,20 +10,9 @@
         android:name="com.example.geekvisitmessage.ui.fragments.MessageFragment"
         android:label="Message"
         tools:layout="@layout/fragment_message" >
-        <action
-            android:id="@+id/action_messageFragment_to_userFragment"
-            app:destination="@id/navigation_user" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_user"
-        android:name="com.example.geekvisitmessage.ui.fragments.UserFragment"
-        android:label="User"
-        tools:layout="@layout/fragment_user" >
 
-        <argument
-            android:name="myArg"
-            android:defaultValue='Hello' />
     </fragment>
+
 
 
 </navigation>

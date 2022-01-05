@@ -6,52 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.MessageFragment">
 
-    <EditText
-        android:id="@+id/edit_input_message"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_message"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Введите сообщение "
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/image_send_message"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/image_send_message"
-        android:layout_width="50dp"
         android:layout_height="0dp"
-        android:padding="10dp"
-        android:src="@drawable/ic_send"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edit_input_message"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_message" />
 
 
-    <ImageView
-        android:id="@+id/image_photo_message"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:padding="10dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_photo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/image_voice_message"
-        app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+<!--        <TextView-->
+<!--            android:id="@+id/txt_message"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:hint="Принять сообшение"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageView
-        android:id="@+id/image_voice_message"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:padding="10dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_voice"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+        <ImageView
+            android:id="@+id/emoji_image"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:src="@drawable/ic_emoji"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <EditText
+            android:id="@+id/edit_input_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Введите сообщение "
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_send_message"
+            app:layout_constraintStart_toEndOf="@id/emoji_image" />
+
+        <ImageView
+            android:id="@+id/image_send_message"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_send"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+
+
+        <ImageView
+            android:id="@+id/image_photo_message"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:src="@drawable/ic_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_voice_message"
+            app:layout_constraintTop_toTopOf="@id/edit_input_message" />
+
+        <ImageView
+            android:id="@+id/image_voice_message"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:src="@drawable/ic_voice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edit_input_message" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
